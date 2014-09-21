@@ -48,7 +48,7 @@ public class XStreamToSupportCatrobatLanguageVersion092AndBeforeTest extends Ins
 	private static final String ZIP_FILENAME_XRAY_PHONE = "X-Ray_phone.catrobat";
 	private static final String ZIP_FILENAME_ALL_BRICKS = "All_Bricks.catrobat";
 	private static final String ZIP_FILENAME_NOTE_AND_SPEAK_BRICK = "Note_And_Speak_Brick.catrobat";
-
+	private static final String ZIP_FILENAME_GHOST_EFFECT_BRICKS = "Ghost_Effect_Bricks.catrobat";
 
 	private static final String PROJECT_NAME_FALLING_BALLS = "Falling balls";
 	private static final String PROJECT_NAME_COLOR_LEANER_BALLOONS = "Color Learner - Balloons";
@@ -58,6 +58,7 @@ public class XStreamToSupportCatrobatLanguageVersion092AndBeforeTest extends Ins
 	private static final String PROJECT_NAME_XRAY_PHONE = "X-Ray phone";
 	private static final String PROJECT_NAME_ALL_BRICKS = "All Bricks";
 	private static final String PROJECT_NAME_NOTE_AND_SPEAK_BRICK = "NoteAndSpeakBrick";
+	private static final String PROJECT_NAME_GHOST_EFFECT_BRICKS = "Ghost Effect Bricks";
 
 	private void copyAssetProjectZipFile(String fileName, String destinationFolder) {
 		File dstFolder = new File(destinationFolder);
@@ -177,7 +178,6 @@ public class XStreamToSupportCatrobatLanguageVersion092AndBeforeTest extends Ins
 
 	public void testLoadingProjectsOfCatrobatLanguageVersion092() {
 		copyAssetProjectZipFile(ZIP_FILENAME_NOTE_AND_SPEAK_BRICK, Constants.TMP_PATH);
-
 		UtilZip.unZipFile(Constants.TMP_PATH + "/" + ZIP_FILENAME_NOTE_AND_SPEAK_BRICK, Constants.DEFAULT_ROOT + "/"
 				+ PROJECT_NAME_NOTE_AND_SPEAK_BRICK);
 
@@ -186,7 +186,17 @@ public class XStreamToSupportCatrobatLanguageVersion092AndBeforeTest extends Ins
 		assertEquals("Wrong project loaded", PROJECT_NAME_NOTE_AND_SPEAK_BRICK, noteAndSpeakBrickProject.getName());
 
 		deleteZipFile(ZIP_FILENAME_NOTE_AND_SPEAK_BRICK, Constants.TMP_PATH);
-
 		TestUtils.deleteTestProjects(PROJECT_NAME_NOTE_AND_SPEAK_BRICK);
+
+		copyAssetProjectZipFile(ZIP_FILENAME_GHOST_EFFECT_BRICKS, Constants.TMP_PATH);
+		UtilZip.unZipFile(Constants.TMP_PATH + "/" + ZIP_FILENAME_GHOST_EFFECT_BRICKS, Constants.DEFAULT_ROOT + "/"
+				+ PROJECT_NAME_GHOST_EFFECT_BRICKS);
+
+		Project ghostBricksProject = StorageHandler.getInstance().loadProject(PROJECT_NAME_GHOST_EFFECT_BRICKS);
+		assertTrue("Cannot load " + PROJECT_NAME_GHOST_EFFECT_BRICKS + " project", ghostBricksProject != null);
+		assertEquals("Wrong project loaded", PROJECT_NAME_GHOST_EFFECT_BRICKS, ghostBricksProject.getName());
+
+		deleteZipFile(ZIP_FILENAME_GHOST_EFFECT_BRICKS, Constants.TMP_PATH);
+		TestUtils.deleteTestProjects(PROJECT_NAME_GHOST_EFFECT_BRICKS);
 	}
 }
