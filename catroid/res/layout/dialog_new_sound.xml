@@ -37,29 +37,31 @@
         android:baselineAligned="false"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:weightSum="2" >
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/dialog_new_sound_record_sound"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/new_object_dialog_selector"
-            android:drawableTop="@drawable/ic_launcher"
-            android:gravity="center"
+            android:drawableTop="@drawable/icon_microphone"
             android:text="@string/add_sound_record_new_sound"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="bottom|center_horizontal" />
 
         <TextView
             android:id="@+id/dialog_new_sound_open_chooser"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/new_object_dialog_selector"
             android:drawableTop="@drawable/ic_program_menu_sounds"
-            android:gravity="center"
             android:text="@string/add_sound_choose_sound"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="bottom|center_horizontal" />
 
 
     </LinearLayout >
