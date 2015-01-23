@@ -149,30 +149,29 @@ public class ScriptFragmentTest extends BaseActivityInstrumentationTestCase<Main
 	}
 
 	public void testCopyAddedBrickWithoutAddedScript() {
-		assertTrue("TODO: commented out to get green master. --> IndexOutOfBoundsException",true);
-//		UiTestUtils.createTestProject();
-//		UiTestUtils.getIntoScriptActivityFromMainMenu(solo);
-//
-//		UiTestUtils.openActionMode(solo, solo.getString(R.string.delete), R.id.delete, getActivity());
-//		solo.clickOnCheckBox(0);
-//
-//		UiTestUtils.acceptAndCloseActionMode(solo);
-//		solo.clickOnButton(solo.getString(R.string.yes));
-//
-//		UiTestUtils.addNewBrick(solo, R.string.brick_wait);
-//		solo.sleep(500);
-//		UiTestUtils.dragFloatingBrickDownwards(solo);
-//		solo.sleep(500);
-//
-//		UiTestUtils.openActionMode(solo, solo.getString(R.string.copy), R.id.copy, getActivity());
-//		solo.clickOnCheckBox(1);
-//
-//		UiTestUtils.acceptAndCloseActionMode(solo);
-//
-//		int numberOfBricks = ProjectManager.getInstance().getCurrentProject().getSpriteList().get(0)
-//				.getNumberOfBricks();
-//
-//		assertEquals("No brick has been copied!", 2, numberOfBricks);
+		UiTestUtils.createTestProject();
+		UiTestUtils.getIntoScriptActivityFromMainMenu(solo);
+
+		UiTestUtils.openActionMode(solo, solo.getString(R.string.delete), R.id.delete, getActivity());
+		solo.clickOnCheckBox(0);
+
+		UiTestUtils.acceptAndCloseActionMode(solo);
+		solo.clickOnButton(solo.getString(R.string.yes));
+
+		UiTestUtils.addNewBrick(solo, R.string.brick_wait);
+		solo.sleep(500);
+		UiTestUtils.dragFloatingBrickDownwards(solo);
+		solo.sleep(500);
+
+		UiTestUtils.openActionMode(solo, solo.getString(R.string.copy), R.id.copy, getActivity());
+		solo.clickOnCheckBox(1);
+
+		UiTestUtils.acceptAndCloseActionMode(solo);
+
+		int numberOfBricks = ProjectManager.getInstance().getCurrentProject().getSpriteList().get(0)
+				.getNumberOfBricks();
+
+		assertEquals("No brick has been copied!", 2, numberOfBricks);
 	}
 
 	public void testCopyFromContextDialog() {
