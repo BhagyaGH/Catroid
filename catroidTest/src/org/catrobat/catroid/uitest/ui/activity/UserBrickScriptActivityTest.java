@@ -22,7 +22,9 @@
  */
 package org.catrobat.catroid.uitest.ui.activity;
 
+import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
+import org.catrobat.catroid.common.BrickValues;
 import org.catrobat.catroid.ui.MainMenuActivity;
 import org.catrobat.catroid.ui.fragment.FormulaEditorFragment;
 import org.catrobat.catroid.ui.fragment.UserBrickDataEditorFragment;
@@ -70,22 +72,21 @@ public class UserBrickScriptActivityTest extends BaseActivityInstrumentationTest
 	}
 
 	public void testUserBrickVariableScope() throws InterruptedException {
-		assertTrue("TODO: commented out to get green master. PLS FIX, TODO: uncomment checkVariableScope",true);
-//		ProjectManager.getInstance().getCurrentProject().getUserVariables().addProjectUserVariable("projectVar");
-//		ProjectManager.getInstance().getCurrentProject().getUserVariables().addSpriteUserVariable("spriteVar");
-//
-//		String textOnSetSizeToBrickTextField = "" + Math.round(BrickValues.SET_SIZE_TO);
-//		checkVariableScope(textOnSetSizeToBrickTextField, 0, false);
-//
-//		UiTestUtils.showSourceAndEditBrick(UiTestUtils.TEST_USER_BRICK_NAME, solo);
-//
-//		String textOnChangeXBrickTextField = "" + Math.round(BrickValues.CHANGE_X_BY);
-//		checkVariableScope(textOnChangeXBrickTextField, 1, true);
-//
-//		solo.goBack();
-//		solo.goBack();
-//
-//		checkVariableScope(textOnSetSizeToBrickTextField, 0, false);
+		ProjectManager.getInstance().getCurrentProject().getUserVariables().addProjectUserVariable("projectVar");
+		ProjectManager.getInstance().getCurrentProject().getUserVariables().addSpriteUserVariable("spriteVar");
+
+		String textOnSetSizeToBrickTextField = "" + Math.round(BrickValues.SET_SIZE_TO);
+		checkVariableScope(textOnSetSizeToBrickTextField, 0, false);
+
+		UiTestUtils.showSourceAndEditBrick(UiTestUtils.TEST_USER_BRICK_NAME, solo);
+
+		String textOnChangeXBrickTextField = "" + Math.round(BrickValues.CHANGE_X_BY);
+		checkVariableScope(textOnChangeXBrickTextField, 1, true);
+
+		solo.goBack();
+		solo.goBack();
+
+		checkVariableScope(textOnSetSizeToBrickTextField, 0, false);
 	}
 
 	public void testCantEditBrickDataWhileAddingNewBrick() throws InterruptedException {
@@ -103,33 +104,33 @@ public class UserBrickScriptActivityTest extends BaseActivityInstrumentationTest
 		assertTrue("the userBrickDataEditor should not be open!!", !wentToDataEditor);
 	}
 
-//	private void checkVariableScope(String valueOnBrick, int depth, boolean expectedBrickVariable) {
-//		if (!solo.waitForText(valueOnBrick, 0, 5000)) {
-//			fail("'" + valueOnBrick + "' should have appeared");
-//		}
-//		solo.clickOnText(valueOnBrick);
-//		boolean gotIntoFormulaEditor = solo.waitForFragmentByTag(FormulaEditorFragment.FORMULA_EDITOR_FRAGMENT_TAG);
-//		if (!gotIntoFormulaEditor) {
-//			fail("FormulaEditor should have appeared");
-//		}
-//
-//		String stringOnVariablesButton = solo.getCurrentActivity().getString(R.string.formula_editor_variables);
-//		solo.clickOnText(stringOnVariablesButton, depth);
-//
-//		String stringOnGlobalTag = "FOR ALL OBJECTS";
-//		boolean gotIntoVariableList = solo.waitForText(stringOnGlobalTag, 0, 5000);
-//		if (!gotIntoVariableList) {
-//			fail("'" + stringOnGlobalTag + "' should have appeared");
-//		}
-//
-//		String stringOnUserBrickVar = UiTestUtils.TEST_USER_BRICK_VARIABLE;
-//		boolean hasBrickVariable = solo.waitForText(stringOnUserBrickVar, 0, 5000);
-//		if (hasBrickVariable != expectedBrickVariable) {
-//			fail("'" + stringOnUserBrickVar + "' appeared: " + (hasBrickVariable ? "true" : "false"));
-//		}
-//
-//		solo.goBack();
-//		solo.goBack();
-//	}
+	private void checkVariableScope(String valueOnBrick, int depth, boolean expectedBrickVariable) {
+		if (!solo.waitForText(valueOnBrick, 0, 5000)) {
+			fail("'" + valueOnBrick + "' should have appeared");
+		}
+		solo.clickOnText(valueOnBrick);
+		boolean gotIntoFormulaEditor = solo.waitForFragmentByTag(FormulaEditorFragment.FORMULA_EDITOR_FRAGMENT_TAG);
+		if (!gotIntoFormulaEditor) {
+			fail("FormulaEditor should have appeared");
+		}
+
+		String stringOnVariablesButton = solo.getCurrentActivity().getString(R.string.formula_editor_variables);
+		solo.clickOnText(stringOnVariablesButton, depth);
+
+		String stringOnGlobalTag = "FOR ALL OBJECTS";
+		boolean gotIntoVariableList = solo.waitForText(stringOnGlobalTag, 0, 5000);
+		if (!gotIntoVariableList) {
+			fail("'" + stringOnGlobalTag + "' should have appeared");
+		}
+
+		String stringOnUserBrickVar = UiTestUtils.TEST_USER_BRICK_VARIABLE;
+		boolean hasBrickVariable = solo.waitForText(stringOnUserBrickVar, 0, 5000);
+		if (hasBrickVariable != expectedBrickVariable) {
+			fail("'" + stringOnUserBrickVar + "' appeared: " + (hasBrickVariable ? "true" : "false"));
+		}
+
+		solo.goBack();
+		solo.goBack();
+	}
 
 }
