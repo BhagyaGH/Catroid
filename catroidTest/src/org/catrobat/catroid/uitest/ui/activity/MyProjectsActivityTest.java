@@ -2040,6 +2040,7 @@ public class MyProjectsActivityTest extends BaseActivityInstrumentationTestCase<
 
 	private void playTheProject(boolean switchGreenToRed, boolean switchRedToGreen, boolean makeScreenshot) {
 		String scriptsText = solo.getString(R.string.scripts);
+		solo.waitForText("cat");
 		solo.clickOnText("cat");
 		solo.clickOnText(scriptsText);
 		if (switchGreenToRed) {
