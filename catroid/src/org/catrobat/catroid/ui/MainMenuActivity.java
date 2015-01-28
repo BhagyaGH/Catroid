@@ -60,6 +60,7 @@ import org.catrobat.catroid.stage.StageActivity;
 import org.catrobat.catroid.ui.controller.BackPackListManager;
 import org.catrobat.catroid.ui.dialogs.NewProjectDialog;
 import org.catrobat.catroid.ui.dialogs.TermsOfUseDialogFragment;
+import org.catrobat.catroid.ui.dialogs.AboutDialogFragment;
 import org.catrobat.catroid.utils.DownloadUtil;
 import org.catrobat.catroid.utils.StatusBarNotificationManager;
 import org.catrobat.catroid.utils.UtilFile;
@@ -137,6 +138,7 @@ public class MainMenuActivity extends BaseActivity implements OnLoadProjectCompl
 		String zipFileString = Constants.DEFAULT_ROOT + "/" + ZIP_FILE_NAME;
 		copyProgramZip();
 		Log.d("STANDALONE", "default root " + Constants.DEFAULT_ROOT);
+		Log.d("STANDALONE", "zip file name:" + ZIP_FILE_NAME);
 		Archiver archiver = ArchiverFactory.createArchiver("zip");
 		try {
 			archiver.extract(new File(zipFileString), new File(Constants.DEFAULT_ROOT + "/" + START_PROJECT));
@@ -240,8 +242,8 @@ public class MainMenuActivity extends BaseActivity implements OnLoadProjectCompl
 			setMainMenuButtonContinueText();
 			findViewById(R.id.main_menu_button_continue).setEnabled(true);
 		}
-		setMainMenuButtonContinueText();
-		findViewById(R.id.main_menu_button_continue).setEnabled(true);
+		/*setMainMenuButtonContinueText();
+		findViewById(R.id.main_menu_button_continue).setEnabled(true);*/
 		String projectName = getIntent().getStringExtra(StatusBarNotificationManager.EXTRA_PROJECT_NAME);
 		if (projectName != null) {
 			loadProjectInBackground(projectName);
