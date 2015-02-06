@@ -72,6 +72,7 @@ public final class ProjectManager implements OnLoadProjectCompleteListener, OnCh
 	private boolean asynchronTask = true;
 
 	private FileChecksumContainer fileChecksumContainer = new FileChecksumContainer();
+	private boolean projectSaving;
 
 	private ProjectManager() {
 	}
@@ -502,12 +503,32 @@ public final class ProjectManager implements OnLoadProjectCompleteListener, OnCh
 		}
 	}
 
+	public boolean isProjectSaving() {
+		return projectSaving;
+	}
+
+	public void setProjectSaving(boolean projectSaving) {
+		this.projectSaving = projectSaving;
+	}
+
 	private class SaveProjectAsynchronousTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
 		protected Void doInBackground(Void... params) {
 			StorageHandler.getInstance().saveProject(project);
 			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void v) {
+			setProjectSaving(false);
+			super.onPostExecute(v);
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			setProjectSaving(true);
 		}
 	}
 }

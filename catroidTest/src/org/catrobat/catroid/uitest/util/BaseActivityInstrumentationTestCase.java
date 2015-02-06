@@ -84,6 +84,12 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 
 		Log.v(TAG, "tearDown");
 		Log.v(TAG, "remove Projectname from SharedPreferences");
+
+		//busy-wait solution for testing - should probably be refactored
+		while (ProjectManager.getInstance().isProjectSaving()) {
+			Log.d(TAG, "wait for AsyncTask which saves a project.");
+		}
+
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		SharedPreferences.Editor edit = preferences.edit();
 		edit.remove(Constants.PREF_PROJECTNAME_KEY);
