@@ -231,7 +231,7 @@ public class StageListener implements ApplicationListener {
 				sprite.pause();
 			}
 		} catch (Exception e) {
-			Log.e("StageListener", e.getMessage());
+			Log.e("StageListener", Log.getStackTraceString(e));
 		}
 	}
 
