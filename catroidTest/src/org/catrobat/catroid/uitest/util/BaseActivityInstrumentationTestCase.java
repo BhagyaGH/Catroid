@@ -36,7 +36,6 @@ import org.catrobat.catroid.io.StorageHandler;
 import org.catrobat.catroid.stage.StageListener;
 import org.catrobat.catroid.ui.MainMenuActivity;
 import org.catrobat.catroid.utils.UtilFile;
-import org.catrobat.catroid.utils.UtilZip;
 import org.catrobat.catroid.utils.Utils;
 
 import java.io.File;
@@ -101,7 +100,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 		solo = null;
 		Log.i(TAG, "tearDown end 1");
 
-		unzipProjects();
+		//unzipProjects();
 
 		Log.i(TAG, "tearDown end 2");
 		super.tearDown();
@@ -134,18 +133,18 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 				paths[i] = Utils.buildPath(rootDirectory.getAbsolutePath(), paths[i]);
 			}
 			try {
-				String zipFileString = Utils.buildPath(Constants.DEFAULT_ROOT, ZIPFILE_NAME);
-				Log.d(TAG, "i am the zipfile: " + zipFileString);
-				File zipFile = new File(zipFileString);
-				if (zipFile.exists()) {
-					zipFile.delete();
-				}
-				zipFile.getParentFile().mkdirs();
-				zipFile.createNewFile();
-				if (!UtilZip.writeToZipFile(paths, zipFileString)) {
-					zipFile.delete();
-					throw new IOException("Cannot write data to Zip File!");
-				}
+//				String zipFileString = Utils.buildPath(Constants.DEFAULT_ROOT, ZIPFILE_NAME);
+//				Log.d(TAG, "i am the zipfile: " + zipFileString);
+//				File zipFile = new File(zipFileString);
+//				if (zipFile.exists()) {
+//					zipFile.delete();
+//				}
+//				zipFile.getParentFile().mkdirs();
+//				zipFile.createNewFile();
+//				if (!UtilZip.writeToZipFile(paths, zipFileString)) {
+//					zipFile.delete();
+//					throw new IOException("Cannot write data to Zip File!");
+//				}
 
 				for (String projectName : UtilFile.getProjectNames(rootDirectory)) {
 					Log.d(TAG, projectName + "will be deleted");
@@ -191,12 +190,12 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 
 			if (unzip) {
 				Log.d(TAG, "i am the unzipfile: " + zipFileString);
-				File zipFile = new File(zipFileString);
-				UtilZip.unZipFile(zipFileString, Constants.DEFAULT_ROOT);
-				zipFile.delete();
+//				File zipFile = new File(zipFileString);
+//				UtilZip.unZipFile(zipFileString, Constants.DEFAULT_ROOT);
+//				zipFile.delete();
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Log.d(TAG, "Something wet wrong while unzip files in tear down", e);
 		}
 	}
